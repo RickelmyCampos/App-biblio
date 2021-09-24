@@ -9,11 +9,15 @@
 import React ,{Component}from 'react';
 import {Text,View,} from 'react-native';
 import Conteiner from './src/conteiner/Conteiner'
+import {AppNavigator} from './AppNavigator'
+import { NavigationContainer } from '@react-navigation/native';
 
 class App extends Component {
   render(){
     return (
-      <Conteiner/>
+      <NavigationContainer>
+        <Conteiner/>
+      </NavigationContainer>
     );
   }
  

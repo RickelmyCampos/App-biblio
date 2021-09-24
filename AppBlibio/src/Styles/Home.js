@@ -62,6 +62,6 @@ export default StyleSheet.create({
         fontStyle: 'normal',
         textAlign:'center'
 
-    }
+    },
         
     });

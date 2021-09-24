@@ -4,7 +4,7 @@ import Estilos from '../Styles/Book';
 import {LogBox } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
-const PageBook = () => (
+const PageBook = ({navigation}) => (
   <View>
          <ScrollView>
          <View style={Estilos.Label_sup}>
@@ -49,11 +49,6 @@ const PageBook = () => (
      </View>
 );
 
-PageBook.options = {
-  title: 'Book',
-  headerStyle:{backgroundColor: '#17B77D',},
-  headerTintColor:'#fff'
-}
 
 
 export default PageBook;
