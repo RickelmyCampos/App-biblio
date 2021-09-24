@@ -4,7 +4,7 @@ export default StyleSheet.create({
       
       width:'100%',
       height:'30%',
-      
+      backgroundColor:'#17B77D',
       justifyContent:'center',
       alignItems:'center'
   },
@@ -20,6 +20,10 @@ export default StyleSheet.create({
         fontWeight: 'bold',
         padding:15
 
+  },
+  viewcredentials:{
+    width:'100%',
+    height:'6%',
   },
   TextBot:{
     

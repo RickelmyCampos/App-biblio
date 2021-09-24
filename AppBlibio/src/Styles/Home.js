@@ -26,15 +26,18 @@ export default StyleSheet.create({
         fontFamily:'Rubik Light',
         color:'#FFFFFF',
         fontStyle: 'normal',
+        textAlign:'right',
+        width:'100%',
+        height:'50%'
         
-        top:'80%'
     
     },
     text_Desc2:{
         fontSize:25,
         fontFamily:'Rubik Medium',
         fontStyle: 'normal',
-        padding:30
+        padding:30,
+        
 
     },
     text_Value:{
@@ -42,8 +45,11 @@ export default StyleSheet.create({
         fontFamily:'Rubik Medium',
         color:'#FFFFFF',
         fontStyle: 'normal',
-        left:'70%',
-        top:'80%' 
+        textAlign:'right',
+        width:'100%',
+        height:'50%'
+        
+         
     },
     imageGenero:{
         width:100,height:100

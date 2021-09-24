@@ -104,23 +104,22 @@ function PageHome ({ navigation }) {
   return(
 <SafeAreaView style={Estilos.conteiner}>
       <StatusBar backgroundColor='#17B77D'/>
-      <View style={{width:'100%',height:'25%',backgroundColor:'#17B77D'}}>
-      
-      <View style={{width:'100%',height:'60%',flexDirection:'row',justifyContent:'space-around'}}>
-                      <View style={{flexDirection:'column'}}>
+      <View style={{width:'100%',height:'30%',flexDirection:'row',flex:1,padding:'7%',backgroundColor:'#17B77D',}}>
+                      <View style={{height:'100%',width:'100%',flex:1,flexDirection:'row',top:'20%'}}>
+                        <View style={{flexDirection:'column',width:'50%'}}>
                       <Text style={Estilos.text_Desc}>Meta de Leitura mensal</Text>
                       <Text style={Estilos.text_Value}>4/10</Text>
                       </View>
                     
-                      <View style={{flexDirection:'column',}}>
+                      <View style={{flexDirection:'column',width:'50%',}}>
                         <Text style={Estilos.text_Desc}>Total de Livros</Text>
                         <Text style={Estilos.text_Value}>50</Text>
                       </View>
-
+                      </View>
                   </View>
 
-      </View>
-     <View style={{height:'100%',height:'75%'}}>
+      
+     <View style={{height:'100%',height:'70%'}}>
      <ScrollView >
        <View >
      <View style={{width:'100%',}}>
