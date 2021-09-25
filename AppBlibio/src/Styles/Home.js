@@ -1,15 +1,17 @@
 
 import {ScrollViewBase, StyleSheet,View,} from 'react-native';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 export default StyleSheet.create({
     conteiner:{
         flex:1,
         backgroundColor:'#fff',
+        width:wp('100%')
     },
     View_Infe:{
         flex:1,
        
         flexDirection:'column',
-        top:'20%',
+        top:wp('20%'),
         backgroundColor: '#FFFFFF',
         
         
@@ -26,9 +28,8 @@ export default StyleSheet.create({
         fontFamily:'Rubik Light',
         color:'#FFFFFF',
         fontStyle: 'normal',
-        textAlign:'right',
-        width:'100%',
-        height:'50%'
+        
+        textAlign:'right'
         
     
     },
@@ -45,9 +46,9 @@ export default StyleSheet.create({
         fontFamily:'Rubik Medium',
         color:'#FFFFFF',
         fontStyle: 'normal',
-        textAlign:'right',
-        width:'100%',
-        height:'50%'
+        
+      
+        
         
          
     },
