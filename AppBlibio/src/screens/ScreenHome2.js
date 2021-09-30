@@ -106,7 +106,7 @@ function PageHome ({ navigation }) {
 <SafeAreaView style={Estilos.conteiner}>
       <StatusBar backgroundColor='#17B77D'/>
       <View style={{width:wp('100%'),height:hp('30%'),flexDirection:'row',flex:1,padding:'7%',backgroundColor:'#17B77D',}}>
-                      <View style={{height:wp('100%'),width:hp('90%'),flex:1,flexDirection:'row',}}>
+                      <View style={{height:wp('100%'),width:hp('90%'),flex:1,flexDirection:'row',right:'14%'}}>
                         <View style={{flexDirection:'column',width:wp('50%')}}>
                       <Text style={Estilos.text_Desc}>Meta de Leitura mensal</Text>
                       <Text style={Estilos.text_Value}>4/10</Text>
@@ -142,7 +142,7 @@ function PageHome ({ navigation }) {
                 data={Generos}
                 horizontal
                 keyExtractor={item=>item.id}
-                renderItem={({item})=>(<TouchableOpacity>{List({item})}</TouchableOpacity>)}
+                renderItem={({item})=>(<TouchableOpacity onPress={() => navigation.navigate('List')}>{List({item})}</TouchableOpacity>)}
               />
           </View>
         </View>

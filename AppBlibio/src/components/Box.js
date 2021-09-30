@@ -31,6 +31,7 @@ function DrawerContent () {
     <Text style={Estilo.TextConfigs}>Amigos</Text>
     <Text style={Estilo.TextConfigs}>Meus Livros</Text>
     <Text style={Estilo.TextConfigs}>Configurações</Text>
+    <Text style={Estilo.TextConfigs}>Sair</Text>
    
     </View>
     </View>

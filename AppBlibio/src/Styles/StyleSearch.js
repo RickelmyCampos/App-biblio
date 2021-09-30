@@ -1,22 +1,24 @@
 import {ScrollViewBase, StyleSheet,View,} from 'react-native';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 export default StyleSheet.create({
     HeaderSearch:{
        
-        width:'16%',
-        height:'100%',
+        width:wp('13%'),
+        height:hp('6%'),
         backgroundColor:'#fff',
-        borderTopRightRadius:50,
-        borderBottomRightRadius:50,
-        justifyContent:'center'
-        
+        borderRadius:50,
+        justifyContent:'center',
+        opacity:1
     },
     HeaderSearchText:{
     
-        width:'80%',
+        width:wp('100%'),
+        height:hp('7.5%'),
+        flexDirection:'row',
         backgroundColor:'#fff',
-        borderTopLeftRadius:50,
-        borderBottomLeftRadius:50,
-        justifyContent:'center'
+        borderRadius:100,
+        justifyContent:'center',
+        opacity:1
 
     }
 

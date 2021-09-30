@@ -29,8 +29,8 @@ export default StyleSheet.create({
         color:'#FFFFFF',
         fontStyle: 'normal',
         
-        textAlign:'right'
-        
+        textAlign:'right',
+        height:hp('9%'),
     
     },
     text_Desc2:{
@@ -46,6 +46,8 @@ export default StyleSheet.create({
         fontFamily:'Rubik Medium',
         color:'#FFFFFF',
         fontStyle: 'normal',
+        height:hp('50%'),
+        textAlign:'right',
         
       
         
