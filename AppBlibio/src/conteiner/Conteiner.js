@@ -1,6 +1,7 @@
 import PageHome from '../screens/ScreenHome2';
 import PageBook from '../screens/ScreenBook';
 import PageListBook from '../screens/ListBooks';
+import PageCadastro from '../screens/ScreenCadastro';
 import Estilos from '../Styles/HeaderStyles';
 import SearchStyle from '../Styles/StyleSearch';
 import  React,{useState} from 'react';
@@ -25,7 +26,7 @@ const Stack=createNativeStackNavigator();
 function DrawerHome() {
     const [visivel,setVisivel]=useState(false)
     return(
-        <DrawerHomeNavigation.Navigator drawerContent={()=>(<DrawerContent/>)}>
+        <DrawerHomeNavigation.Navigator drawerContent={(props)=>(<DrawerContent {...props}/>)}>
             <DrawerHomeNavigation.Screen name='Home' component={PageHome} options={{
         headerStyle : { 
         backgroundColor : '#17B77D' , 
@@ -71,12 +72,15 @@ function DrawerHome() {
 }
 
 function Conteiner(){
-    return(
-            <Stack.Navigator >
+    return(<View style={{height:hp('100%'),width:wp('100%')}}>
+      <Stack.Navigator >
             <Stack.Screen name="DrawerHome" component={DrawerHome} options={{headerShown:false,}}/>
             <Stack.Screen name="Book" component={PageBook} options={Estilos.HeaderBook}/>
             <Stack.Screen name="List" component={PageListBook} options={Estilos.HeaderBook}/>
+            <Stack.Screen name="Cadastro" component={PageCadastro} options={Estilos.HeaderBook}/>
             </Stack.Navigator>
+    </View>
+            
             
     );
 }

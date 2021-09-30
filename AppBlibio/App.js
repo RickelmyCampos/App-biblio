@@ -17,6 +17,7 @@ import Teste from './src/components/ComponenteTest'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { Button, ThemeProvider } from 'react-native-elements';
+import Cadastro from './src/screens/ScreenCadastro';
 import Lista from './src/screens/ListBooks'
 
 
@@ -31,7 +32,8 @@ class App extends Component {
         <SafeAreaProvider>
       <Conteiner/>
       </SafeAreaProvider>
-    </NavigationContainer>)
+    </NavigationContainer>
+      )
   }
 }
  
@@ -51,6 +53,11 @@ export default App;
 }
 
 export default App;
+<NavigationContainer>
+        <SafeAreaProvider>
+      <Conteiner/>
+      </SafeAreaProvider>
+    </NavigationContainer>
 
 <NavigationContainer>
         <Conteiner/>

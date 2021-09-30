@@ -154,7 +154,7 @@ function PageHome ({ navigation }) {
                 data={Favoritos}
                 horizontal
                 keyExtractor={item=>item.id}
-                renderItem={({item})=>(<TouchableOpacity>{List({item})}</TouchableOpacity>)}
+                renderItem={({item})=>(<TouchableOpacity onPress={()=>navigation.navigate('Cadastro')}>{List({item})}</TouchableOpacity>)}
               />
           </View>
           

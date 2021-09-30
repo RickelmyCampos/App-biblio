@@ -1,12 +1,14 @@
 import React from "react";;
-import { View, Text,Image, SafeAreaView, ImagePropTypes} from 'react-native';
+import { View, Text,Image, SafeAreaView, ImagePropTypes,TouchableOpacity} from 'react-native';
 import Estilo from '../Styles/drawerHomeStyles'
 import{Avatar,Accessory} from 'react-native-elements'
 import { color } from "react-native-reanimated";
 
 
 
-function DrawerContent () {
+
+function DrawerContent (props) {
+  const {navigation}=props;
   return(
 <SafeAreaView>
   <View style={Estilo.Perfil}>
@@ -29,8 +31,10 @@ function DrawerContent () {
   <View style={Estilo.Configs}>
    <View style={{marginTop:'10%',marginLeft:'5%'}}>
     <Text style={Estilo.TextConfigs}>Amigos</Text>
+    <TouchableOpacity onPress={()=>navigation.navigate('Cadastro')}><Text style={Estilo.TextConfigs}>Cadastrar</Text></TouchableOpacity>
     <Text style={Estilo.TextConfigs}>Meus Livros</Text>
     <Text style={Estilo.TextConfigs}>Configurações</Text>
+    
     <Text style={Estilo.TextConfigs}>Sair</Text>
    
     </View>
