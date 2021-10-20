@@ -10,8 +10,8 @@ export default StyleSheet.create({
     TextIn:{
         borderWidth:1,
         borderRadius:10,
-        borderColor:'#17B77D',
-        color:'black'
+        borderColor:'#7FC8A9',
+        color:'#444941'
 
     },
     TextNames:{
@@ -19,6 +19,7 @@ export default StyleSheet.create({
         fontSize:20,
         fontFamily:'Rubik Light',
         fontStyle: 'normal',
+        color:'#5F7A61'
     },
     TextSin:{
         borderWidth:1,
@@ -39,7 +40,7 @@ export default StyleSheet.create({
 
     },
     Botao:{
-        backgroundColor:'#17B77D',
+        backgroundColor:'#7FC8A9',
         width:wp('30%'),
         height:hp('6%'),
         alignItems:'center',

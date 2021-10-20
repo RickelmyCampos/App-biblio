@@ -29,13 +29,11 @@ function DrawerHome() {
         <DrawerHomeNavigation.Navigator drawerContent={(props)=>(<DrawerContent {...props}/>)}>
             <DrawerHomeNavigation.Screen name='Home' component={PageHome} options={{
         headerStyle : { 
-        backgroundColor : '#17B77D' , 
+        backgroundColor : '#7FC8A9' , 
       },
       title: null,
       headerTintColor : '#fff' ,
       headerRight: () => (
-         
-            
           <View style={SearchStyle.HeaderSearch}>
           <TouchableOpacity  onPress={()=>{setVisivel(true)}}>
           <Icon  name='search'
@@ -59,10 +57,7 @@ function DrawerHome() {
           </TouchableWithoutFeedback>
         </View>
           </Modal>
-        </View>
-       
-          
-        
+        </View>   
       ),
     } 
         } />

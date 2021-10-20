@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "970638321589",
+    "project_id": "appbiblio-d6216",
+    "storage_bucket": "appbiblio-d6216.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:970638321589:android:e7fa7eea8fd60e66c05bfc",
+        "android_client_info": {
+          "package_name": "com.appblibio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "970638321589-0vb8kdvk0u41c9hjl8ajafcagbh7q4sg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVzCACih5Mu-Glrt15PTs9xKw_EMQLW2c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "970638321589-0vb8kdvk0u41c9hjl8ajafcagbh7q4sg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

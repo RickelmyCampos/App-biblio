@@ -8,7 +8,7 @@
 
 import React ,{Component, useEffect,useState}from 'react';
 import {Text,View,FlatList,ScrollView} from 'react-native';
-import Conteiner from './src/conteiner/Conteiner'
+import Conteiner from './src/routes/app.routes'
 import {AppNavigator} from './AppNavigator'
 import { NavigationContainer } from '@react-navigation/native';
 
@@ -17,8 +17,10 @@ import Teste from './src/components/ComponenteTest'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { Button, ThemeProvider } from 'react-native-elements';
-import Cadastro from './src/screens/ScreenCadastro';
-import Lista from './src/screens/ListBooks'
+
+import Login from './src/screens/Login'
+import Routes from './src/routes'
+import {AuthProvider} from './src/contexts/auth';
 
 
 
@@ -29,15 +31,17 @@ class App extends Component {
     
     return(
       <NavigationContainer>
-        <SafeAreaProvider>
-      <Conteiner/>
-      </SafeAreaProvider>
-    </NavigationContainer>
-      )
+        <AuthProvider>
+          <SafeAreaProvider>
+            <Routes/>
+          </SafeAreaProvider>
+        </AuthProvider>
+      </NavigationContainer>
+          )
   }
 }
  
-
+//<Conteiner/>
 
 export default App;
 

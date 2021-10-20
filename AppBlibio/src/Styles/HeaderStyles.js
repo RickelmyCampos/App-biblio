@@ -14,9 +14,9 @@ const HeaderStyles={
     },
     HeaderBook:{
         headerStyle : { 
-        backgroundColor : '#17B77D' , 
+        backgroundColor : '#fff' , 
       },
-      headerTintColor : '#fff' ,
+      headerTintColor : '#444941' ,
       },    
 }
 export default HeaderStyles;

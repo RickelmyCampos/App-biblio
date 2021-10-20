@@ -4,7 +4,7 @@ export default StyleSheet.create({
       
       width:'100%',
       height:'30%',
-      backgroundColor:'#17B77D',
+      backgroundColor:'#7FC8A9',
       justifyContent:'center',
       alignItems:'center'
   },
@@ -18,7 +18,8 @@ export default StyleSheet.create({
         fontSize:15,
         fontFamily:'Rubik Medium',
         fontWeight: 'bold',
-        padding:15
+        padding:15,
+        color:'#444941'
 
   },
   viewcredentials:{

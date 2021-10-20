@@ -4,7 +4,7 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 export default StyleSheet.create({
     conteiner:{
         flex:1,
-        backgroundColor:'#fff',
+        backgroundColor:'#D5EEBB',
         width:wp('100%')
     },
     View_Infe:{
@@ -12,7 +12,7 @@ export default StyleSheet.create({
        
         flexDirection:'column',
         top:wp('20%'),
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#D5EEBB',
         
         
     },
@@ -26,7 +26,7 @@ export default StyleSheet.create({
     text_Desc:{
         fontSize:20,
         fontFamily:'Rubik Light',
-        color:'#FFFFFF',
+        color:'#444941',
         fontStyle: 'normal',
         
         textAlign:'right',
@@ -38,6 +38,8 @@ export default StyleSheet.create({
         fontFamily:'Rubik Medium',
         fontStyle: 'normal',
         padding:30,
+        fontWeight:'bold',
+        color:'#5F7A61',
         
 
     },
@@ -67,10 +69,53 @@ export default StyleSheet.create({
     textItem:{
         fontSize:20,
         fontFamily:'Rubik Light',
-        color:'#000000',
+        color:'#444941',
         fontStyle: 'normal',
         textAlign:'center'
 
+    },
+    BoxBook:{
+        flex:1,
+        backgroundColor:'white',
+        width:wp('80%'),
+        marginTop:hp('1%'),
+        marginBottom:hp('1%'),
+        borderRadius:10,
+        flexDirection:'row',
+        borderBottomWidth:1.1,
+        borderColor:'#444941'
+       
+        
+    
+    },
+   
+    infLabel:{
+        width:wp('90%'),
+        backgroundColor:'#fff',
+        alignItems:'center',
+        //bottom:hp('10%')
+
+        
+        
+    },
+    TextPrinc:{
+        fontSize:20,
+        fontFamily:'Rubik Medium',
+        fontStyle: 'normal',
+        fontWeight:'bold',
+        marginTop:hp('1%'),
+        marginLeft:wp('5%'),
+        color:'#5F7A61'
+
+      
+    },
+    Text_sec:{
+        fontSize:15,
+        fontFamily:'Rubik Light',
+        fontStyle: 'normal',
+        marginBottom:'8%',
+        marginLeft:wp('5%'),
+        color:'#444941'
     },
         
     });

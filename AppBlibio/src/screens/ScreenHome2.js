@@ -1,8 +1,10 @@
-import React from 'react';
+import React,{useEffect,useState}from 'react';
+import api from '../services/api'
 import { Text,View,Image,StyleSheet, ScrollView, SafeAreaView, StatusBar, FlatList} from 'react-native';
 import { TouchableHighlight, TouchableOpacity } from 'react-native';
 import Estilos from '../Styles/Home';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import Icon from 'react-native-vector-icons/Feather';
 
 const Generos=[
   {
@@ -102,10 +104,27 @@ const List=({item})=>{
   </View>)
 }
 function PageHome ({ navigation }) {
+  const [books, setBooks] = useState([])
+  
+    useEffect(() => {
+        // sujeitoprogramador.com/ + r-api/?api=filmes
+        async function loadBooks(){
+            const response = await api.get('books')
+            console.log(response.data)
+            setBooks(response.data)
+        }
+        
+        loadBooks()
+    }, [])
   return(
 <SafeAreaView style={Estilos.conteiner}>
-      <StatusBar backgroundColor='#17B77D'/>
-      <View style={{width:wp('100%'),height:hp('30%'),flexDirection:'row',flex:1,padding:'7%',backgroundColor:'#17B77D',}}>
+      <StatusBar backgroundColor='#7FC8A9'/>
+      
+
+      
+      <View >
+     <ScrollView  >
+     <View style={{width:wp('100%'),height:hp('30%'),flexDirection:'row',flex:1,padding:'7%',backgroundColor:'#7FC8A9',}}>
                       <View style={{height:wp('100%'),width:hp('90%'),flex:1,flexDirection:'row',right:'14%'}}>
                         <View style={{flexDirection:'column',width:wp('50%')}}>
                       <Text style={Estilos.text_Desc}>Meta de Leitura mensal</Text>
@@ -118,10 +137,6 @@ function PageHome ({ navigation }) {
                       </View>
                       </View>
                   </View>
-
-      
-     <View style={{width:wp('100%'),height:hp('70%')}}>
-     <ScrollView >
        <View >
      <View style={{width:wp('100%'),}}>
      <Text style={Estilos.text_Desc2}>Recentes</Text>
@@ -130,13 +145,13 @@ function PageHome ({ navigation }) {
                 data={Recentes}
                 horizontal
                 keyExtractor={item=>item.id}
-                renderItem={({item})=>(<TouchableOpacity onPress={() => navigation.navigate('Book')}>{List({item})}</TouchableOpacity>)}
+                renderItem={({item})=>(<TouchableOpacity >{List({item})}</TouchableOpacity>)}
               />
           </View>
         </View>
         
         <View style={{width:wp('100%')}}>
-        <Text style={Estilos.text_Desc2}>Gêneros</Text>
+        <Text style={Estilos.text_Desc2}>Favoritos</Text>
         <View >
             <FlatList
                 data={Generos}
@@ -148,20 +163,44 @@ function PageHome ({ navigation }) {
         </View>
 
         <View style={{width:wp('100%')}}>
-        <Text style={Estilos.text_Desc2} >Favoritos</Text>
-        <View >
-            <FlatList
-                data={Favoritos}
-                horizontal
-                keyExtractor={item=>item.id}
-                renderItem={({item})=>(<TouchableOpacity onPress={()=>navigation.navigate('Cadastro')}>{List({item})}</TouchableOpacity>)}
-              />
+        <Text style={Estilos.text_Desc2} >Lista de Desejos</Text>
+        <View style={{width:wp('100%'),alignItems:'center', backgroundColor:'#D5EEBB',marginBottom:hp('5%')}}>
+        <View style={Estilos.infLabel}>
+         
+         <FlatList
+                 data={books}
+                 keyExtractor={item=>item.id}
+                 renderItem={({item})=>(<View><View style={Estilos.BoxBook}>
+                   <TouchableOpacity onPress={() => (navigation.navigate('Book',item))}>
+                   <View style={{width:wp('60%'),  }}>
+                     <Text style={Estilos.TextPrinc}>{item.NomeLivro}</Text>
+                     <Text style={Estilos.Text_sec}>{item.Autor}</Text>
+                     </View>
+                     </TouchableOpacity>
+                     <View style={{ width:wp('20%'),flexDirection:'row', alignItems:'center',justifyContent:'space-around',padding:0, right:10}}>
+                     <TouchableOpacity >
+                       <View style={{padding:6}}>
+                     <Icon name='trash-2' size={20}
+                            color='grey' />
+                          </View >
+                            </TouchableOpacity>
+                            <TouchableOpacity >
+                              <View style={{padding:6}}>
+                      <Icon name='check' size={20}
+                            color='grey' />
+                            </View>
+                            </TouchableOpacity>
+                     </View>
+                     </View></View>)}
+               />
+               </View>
           </View>
           
         </View>
         </View>
         </ScrollView>
-     </View>
+        </View>
+    
         
    
     </SafeAreaView>

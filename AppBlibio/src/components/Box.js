@@ -1,14 +1,20 @@
-import React from "react";;
+import React, { useContext } from "react";;
 import { View, Text,Image, SafeAreaView, ImagePropTypes,TouchableOpacity} from 'react-native';
 import Estilo from '../Styles/drawerHomeStyles'
 import{Avatar,Accessory} from 'react-native-elements'
-import { color } from "react-native-reanimated";
+import AuthContext from "../contexts/auth";
+
 
 
 
 
 function DrawerContent (props) {
+  const {Logout,user}=useContext(AuthContext)
   const {navigation}=props;
+  function Sair(){
+      Logout();
+  }
+  console.log(user.user)
   return(
 <SafeAreaView>
   <View style={Estilo.Perfil}>
@@ -23,8 +29,8 @@ function DrawerContent (props) {
     
   
        
-       <Text style={{fontSize:18,fontFamily:'Rubik Medium',fontWeight: 'bold',textAlign:'center'}}>Nome Completo</Text>
-       <Text style={{fontSize:15,fontFamily:'Rubik Medium',textAlign:'center'}}>Ver Perfil</Text>
+       <Text style={{fontSize:18,fontFamily:'Rubik Medium',fontWeight: 'bold',textAlign:'center',color:'#444941'}}>{user.user.email}</Text>
+       <Text style={{fontSize:15,fontFamily:'Rubik Medium',textAlign:'center',color:'#444941'}}>Ver Perfil</Text>
     </View>
     
   </View>
@@ -32,17 +38,12 @@ function DrawerContent (props) {
    <View style={{marginTop:'10%',marginLeft:'5%'}}>
     <Text style={Estilo.TextConfigs}>Amigos</Text>
     <TouchableOpacity onPress={()=>navigation.navigate('Cadastro')}><Text style={Estilo.TextConfigs}>Cadastrar</Text></TouchableOpacity>
-    <Text style={Estilo.TextConfigs}>Meus Livros</Text>
-    <Text style={Estilo.TextConfigs}>Configurações</Text>
+    <TouchableOpacity ><Text style={Estilo.TextConfigs}>Meus Livros</Text></TouchableOpacity>
+    <TouchableOpacity ><Text style={Estilo.TextConfigs}>Configurações</Text></TouchableOpacity>
+    <TouchableOpacity onPress={Sair} ><Text style={Estilo.TextConfigs}>Sair</Text></TouchableOpacity>
+    </View>
+    </View>
     
-    <Text style={Estilo.TextConfigs}>Sair</Text>
-   
-    </View>
-    </View>
-    <View style={Estilo.viewcredentials}>
-      <Text style={Estilo.TextBot}>Criado e Desenvolvido Por</Text>
-      <Text style={Estilo.TextBot}>Gilberson Rickelmy</Text>
-    </View>
     </SafeAreaView>
 );
 }

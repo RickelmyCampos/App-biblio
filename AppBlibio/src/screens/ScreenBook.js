@@ -1,53 +1,57 @@
-import React from 'react';
+import React,{useState}from 'react';
 import { View, Text,Image} from 'react-native';
 import Estilos from '../Styles/Book';
 import {LogBox } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import Icon1 from 'react-native-vector-icons/AntDesign';
+import Icon2 from 'react-native-vector-icons/Ionicons';
+import Icon3 from 'react-native-vector-icons/MaterialIcons';
+import{Avatar} from 'react-native-elements'
 
-const PageBook = ({navigation}) => (
-  <View>
+
+ 
+
+  
+
+function PageBook ({ route,navigation }){
+const book= route.params;
+       
+    return(
+        <View>
          <ScrollView>
          <View style={Estilos.Label_sup}>
-            <Image
-            source={require('../assets/images/Generico.png')}//
-            resizeMode='cover'
-            style={Estilos.imageGenero}
-            />
-            <View style={Estilos.view2}>
-                <Text style={Estilos.Text_top}>Nome do Livro</Text>
-                <Text>Autor</Text>
-                <Text>Ano</Text>
-                <Text>Gênero</Text>
-                <View style={{flex:1,flexDirection:'row',width:'100%',height:80}}>
-                    <Image
-                    source={require('../assets/images/Generico.png')}//
-                    resizeMode='cover'
-                    style={Estilos.imagemenor}
-                    />
-                    <Image
-                    source={require('../assets/images/Generico.png')}//
-                    resizeMode='cover'
-                    style={Estilos.imagemenor}
-                    />
-                    <Image
-                    source={require('../assets/images/Generico.png')}//
-                    resizeMode='cover'
-                    style={Estilos.imagemenor}
-                    />
+             <View style={{flex:1,width:'48%', justifyContent:'center'}}>
+             <Avatar  size='large' icon={{name: 'book', color: '#fff',type: 'font-awesome',}} overlayContainerStyle={{backgroundColor: '#444941'}}/>
+            </View >
+            <View style={Estilos.view2,{width:'52%'}}>
+                <Text style={Estilos.Text_top}>{book.NomeLivro}</Text>
+                <Text style={Estilos.Text_bot}>{book.Autor}</Text>
+                <Text style={Estilos.Text_bot}>{book.Ano}</Text>
+                <Text style={Estilos.Text_bot}>{book.Genero}</Text>
+                <View style={{flex:1,flexDirection:'row',width:'100%', justifyContent:'space-between', borderTopWidth:1,borderTopColor:'#444941',padding:5}}>
+                    
+                    <Icon1 name='checkcircleo' size={40}
+                            color='#444941' />
+                     <Icon2 name='book-outline' size={40}
+                            color='#444941' />
+                    <Icon3 name='favorite-outline' size={40}
+                            color='#444941' />
                 </View>
             </View>
         </View>
         <View style={Estilos.Label_inf}>
         <Text style={Estilos.Text_princ}>Descrição</Text>
-        <Text style={Estilos.Text_sec}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada mauris eget lorem ullamcorper, finibus tristique velit posuere. Duis vitae congue nisl, vitae rhoncus lectus. Suspendisse ut tempus nisi. Mauris facilisis porta vulputate. Donec consequat lectus non neque mollis pharetra. Donec vitae bibendum nisi. In egestas, sem et faucibus interdum, leo lectus volutpat libero, vitae auctor odio enim at dolor. Suspendisse sit amet enim sed tellus vehicula blandit.</Text>
+        <Text style={Estilos.Text_sec}>{book.Descrição}</Text>
         <Text style={Estilos.Text_princ}>Minhas Notas</Text>
-        <Text style={Estilos.Text_sec}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada mauris eget lorem ullamcorper, finibus tristique velit posuere. Duis vitae congue nisl, vitae rhoncus lectus. Suspendisse ut tempus nisi. Mauris facilisis porta vulputate. Donec consequat lectus non neque mollis pharetra. Donec vitae bibendum nisi. In egestas, sem et faucibus interdum, leo lectus volutpat libero, vitae auctor odio enim at dolor. Suspendisse sit amet enim sed tellus vehicula blandit.</Text>
+        <Text style={Estilos.Text_sec}> Sem notas adicionadas</Text>
 
         </View>
         
          </ScrollView>
      </View>
-);
+    );
+}
+  
 
 
 
