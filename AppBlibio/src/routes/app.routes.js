@@ -2,6 +2,8 @@ import PageHome from '../screens/ScreenHome2';
 import PageBook from '../screens/ScreenBook';
 import PageListBook from '../screens/ListBooks';
 import PageCadastro from '../screens/ScreenCadastro';
+import PageLogin from '../screens/Login';
+import PageNewUser from '../screens/NewUser';
 import Estilos from '../Styles/HeaderStyles';
 import SearchStyle from '../Styles/StyleSearch';
 import  React,{useState} from 'react';
@@ -23,11 +25,14 @@ console.log(window.React1 === window.React2);
 const DrawerHomeNavigation=createDrawerNavigator();
 const Stack=createNativeStackNavigator();
 
-function DrawerHome() {
+function DrawerHome(props) {
     const [visivel,setVisivel]=useState(false)
+    const v=props.idUser
+    console.log('this values',v)
+   
     return(
-        <DrawerHomeNavigation.Navigator drawerContent={(props)=>(<DrawerContent {...props}/>)}>
-            <DrawerHomeNavigation.Screen name='Home' component={PageHome} options={{
+        <DrawerHomeNavigation.Navigator drawerContent={(props)=>(<DrawerContent valores={v}{...props}/>)}>
+            <DrawerHomeNavigation.Screen name='Home' options={{
         headerStyle : { 
         backgroundColor : '#7FC8A9' , 
       },
@@ -60,16 +65,22 @@ function DrawerHome() {
         </View>   
       ),
     } 
-        } />
+        } >
+          {(props) => <PageHome valores={v}{...props}/>}
+        </DrawerHomeNavigation.Screen>
         </DrawerHomeNavigation.Navigator>
     );
     
 }
 
-function Conteiner(){
+function Conteiner({route}){
     return(<View style={{height:hp('100%'),width:wp('100%')}}>
-      <Stack.Navigator >
-            <Stack.Screen name="DrawerHome" component={DrawerHome} options={{headerShown:false,}}/>
+      <Stack.Navigator initialRouteName="Login">
+            <Stack.Screen name="Login" component={PageLogin} options={Estilos.HeaderBook}/>
+            <Stack.Screen name="NewUser" component={PageNewUser} options={Estilos.HeaderBook}/>
+            <Stack.Screen name="DrawerHome" options={{headerShown:false,}}>
+            {({route}) => <DrawerHome {...route.params}/>}
+              </Stack.Screen>
             <Stack.Screen name="Book" component={PageBook} options={Estilos.HeaderBook}/>
             <Stack.Screen name="List" component={PageListBook} options={Estilos.HeaderBook}/>
             <Stack.Screen name="Cadastro" component={PageCadastro} options={Estilos.HeaderBook}/>

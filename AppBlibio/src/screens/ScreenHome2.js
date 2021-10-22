@@ -3,8 +3,10 @@ import api from '../services/api'
 import { Text,View,Image,StyleSheet, ScrollView, SafeAreaView, StatusBar, FlatList} from 'react-native';
 import { TouchableHighlight, TouchableOpacity } from 'react-native';
 import Estilos from '../Styles/Home';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp, listenOrientationChange} from 'react-native-responsive-screen';
 import Icon from 'react-native-vector-icons/Feather';
+import firestore from '@react-native-firebase/firestore';
+
 
 const Generos=[
   {
@@ -103,25 +105,26 @@ const List=({item})=>{
     <Text style={Estilos.textItem}>{item.Nome}</Text>
   </View>)
 }
-function PageHome ({ navigation }) {
+
+function PageHome ({ navigation,valores}) {
   const [books, setBooks] = useState([])
+  function deleteBook(id){
+    firestore().collection(valores).doc(id).delete()
+  }
   
     useEffect(() => {
         // sujeitoprogramador.com/ + r-api/?api=filmes
-        async function loadBooks(){
-            const response = await api.get('books')
-            console.log(response.data)
-            setBooks(response.data)
-        }
-        
-        loadBooks()
+       firestore().collection(valores).onSnapshot((query)=>{
+         const List=[]
+         query.forEach((doc)=>{
+           List.push({...doc.data(),id:doc.id})
+         })
+         setBooks(List)
+       })
     }, [])
   return(
 <SafeAreaView style={Estilos.conteiner}>
       <StatusBar backgroundColor='#7FC8A9'/>
-      
-
-      
       <View >
      <ScrollView  >
      <View style={{width:wp('100%'),height:hp('30%'),flexDirection:'row',flex:1,padding:'7%',backgroundColor:'#7FC8A9',}}>
@@ -178,7 +181,9 @@ function PageHome ({ navigation }) {
                      </View>
                      </TouchableOpacity>
                      <View style={{ width:wp('20%'),flexDirection:'row', alignItems:'center',justifyContent:'space-around',padding:0, right:10}}>
-                     <TouchableOpacity >
+                     <TouchableOpacity onPress={()=>{
+                       deleteBook(item.id)
+                     }}>
                        <View style={{padding:6}}>
                      <Icon name='trash-2' size={20}
                             color='grey' />

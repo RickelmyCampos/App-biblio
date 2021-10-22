@@ -1,21 +1,24 @@
 import React, { createContext,useEffect,useState} from "react";
 import { View, Text, ActivityIndicator } from "react-native";
-import firebase from "react-native-firebase";
+import firebase from "@react-native-firebase/auth";
 import AsyncStorage from "@react-native-community/async-storage";
+import firestore from '@react-native-firebase/firestore';
 
 
 interface AuthContextData{
     signed:boolean;
     erro:boolean;
+    uid:string;
     email:string;
     user:object;
     Logar(email:string,password:string):Promise<void|string>
-    Logout():void;
+    
 }
 
 const AuthContext= createContext({} as AuthContextData);
 export const AuthProvider=({children})=>{
     const [user,setUser]=useState<object|null>(null);
+    const [uid,setUid]=useState<string|null>(null);
     const [loading,setLoading]=useState(true);
     const [erro,setErro]=useState(false);
     useEffect(()=>{
@@ -29,12 +32,34 @@ export const AuthProvider=({children})=>{
         }
         loadStorageData();
     },[]);
+    useEffect(()=>{
+        async function loadStorageData(){
+            const storagedUser=await AsyncStorage.getItem('@AppBlibio:user');
+            
+            if (storagedUser ){
+                setUser(JSON.parse(storagedUser))
+                setLoading(false);
+            }
+        }
+        loadStorageData();
+    },[]);
+    
+    firestore()
+        .collection('User')
+        .doc(uid)
+        .get()
+        .then(documentSnapshot => {
+            console.log('User exists: ', documentSnapshot.exists);
 
+            if (documentSnapshot.exists) {
+            console.log('User data: ', documentSnapshot.data());
+            setUser(documentSnapshot.data())
+            }
+        });
     async function Logar(email,password){
         try{
-            const user=await firebase.auth()
-            .signInWithEmailAndPassword(email,password);
-            setUser(user)
+            const user= await firebase().signInWithEmailAndPassword(email,password);
+            setUid(user.user.uid)
             setErro(false)
             setLoading(false)
             await AsyncStorage.setItem('@AppBlibio:user', JSON.stringify(user))
@@ -45,11 +70,7 @@ export const AuthProvider=({children})=>{
          
         }
     }
-    function Logout(){
-        AsyncStorage.clear().then(()=>{
-            setUser(null)
-        })
-    }
+    
     if (loading && !!user){
         console.log(loading)
         return(
@@ -61,7 +82,7 @@ export const AuthProvider=({children})=>{
 
     }
     return(
-    <AuthContext.Provider value={{signed:!!user, email:'',user,Logar,Logout,erro}}>
+    <AuthContext.Provider value={{signed:!!user, email:'',user,Logar,erro,uid}}>
         {children}
     </AuthContext.Provider> 
     );

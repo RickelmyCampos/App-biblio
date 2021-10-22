@@ -4,14 +4,14 @@ import Estilos from '../Styles/Cadastro';
 import {LogBox } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import api from '../services/api';
-import { set } from 'react-native-reanimated';
+import firestore from '@react-native-firebase/firestore';
 
 function Salvar() {
     
 }
 
 
-function  Cadastro({navigation}){
+function  Cadastro({navigation,route}){
     const text='';
     const [nome, setNome] = useState('');
     const [autor, setAutor] = useState('');
@@ -24,27 +24,20 @@ function  Cadastro({navigation}){
     function handleAnoChange(Ano){setAno(parseInt(Ano));}
     function handleSinopseChange(Sinopse){setSinopse(Sinopse);}
     function Salvar() {
-        console.log({nome,autor,genero,ano,sinopse})
-        api.post('/books', {
-            NomeLivro: nome,
+        firestore().collection(route.params).add({
+            NomeLivro:nome,
             Autor:autor,
+            Genero:genero,
             Ano:ano,
-            Descrição:sinopse,
-            Genero:genero
-          })
-          .then(function (response) {
-            console.log(response);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-          setNome('');
-    setAutor('');
-    setGenero('');
-   setAno('');
-    setSinopse('');
-    alert('cadastrado!')
-    
+            Sinopse:sinopse
+        })
+        setNome('');
+        setAutor('');
+        setGenero('');
+        setAno('');
+        setSinopse('');
+        alert('cadastrado!')
+            
     }
     return(<View style={Estilos.viewPrinc}>
         

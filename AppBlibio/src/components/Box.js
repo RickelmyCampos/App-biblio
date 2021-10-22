@@ -3,18 +3,22 @@ import { View, Text,Image, SafeAreaView, ImagePropTypes,TouchableOpacity} from '
 import Estilo from '../Styles/drawerHomeStyles'
 import{Avatar,Accessory} from 'react-native-elements'
 import AuthContext from "../contexts/auth";
+import  firebase  from "@react-native-firebase/auth";
 
 
 
 
 
 function DrawerContent (props) {
-  const {Logout,user}=useContext(AuthContext)
+  const id=props.valores
   const {navigation}=props;
   function Sair(){
-      Logout();
+      firebase().signOut().then(()=>{
+        navigation.navigate('Login')
+      }).catch((error)=>{
+        
+      })
   }
-  console.log(user.user)
   return(
 <SafeAreaView>
   <View style={Estilo.Perfil}>
@@ -29,7 +33,7 @@ function DrawerContent (props) {
     
   
        
-       <Text style={{fontSize:18,fontFamily:'Rubik Medium',fontWeight: 'bold',textAlign:'center',color:'#444941'}}>{user.user.email}</Text>
+       <Text style={{fontSize:18,fontFamily:'Rubik Medium',fontWeight: 'bold',textAlign:'center',color:'#444941'}}>nome</Text>
        <Text style={{fontSize:15,fontFamily:'Rubik Medium',textAlign:'center',color:'#444941'}}>Ver Perfil</Text>
     </View>
     
@@ -37,7 +41,7 @@ function DrawerContent (props) {
   <View style={Estilo.Configs}>
    <View style={{marginTop:'10%',marginLeft:'5%'}}>
     <Text style={Estilo.TextConfigs}>Amigos</Text>
-    <TouchableOpacity onPress={()=>navigation.navigate('Cadastro')}><Text style={Estilo.TextConfigs}>Cadastrar</Text></TouchableOpacity>
+    <TouchableOpacity onPress={()=>navigation.navigate('Cadastro',id)}><Text style={Estilo.TextConfigs}>Cadastrar</Text></TouchableOpacity>
     <TouchableOpacity ><Text style={Estilo.TextConfigs}>Meus Livros</Text></TouchableOpacity>
     <TouchableOpacity ><Text style={Estilo.TextConfigs}>Configurações</Text></TouchableOpacity>
     <TouchableOpacity onPress={Sair} ><Text style={Estilo.TextConfigs}>Sair</Text></TouchableOpacity>

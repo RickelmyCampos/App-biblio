@@ -41,7 +41,7 @@ const book= route.params;
         </View>
         <View style={Estilos.Label_inf}>
         <Text style={Estilos.Text_princ}>Descrição</Text>
-        <Text style={Estilos.Text_sec}>{book.Descrição}</Text>
+        <Text style={Estilos.Text_sec}>{book.Sinopse}</Text>
         <Text style={Estilos.Text_princ}>Minhas Notas</Text>
         <Text style={Estilos.Text_sec}> Sem notas adicionadas</Text>
 

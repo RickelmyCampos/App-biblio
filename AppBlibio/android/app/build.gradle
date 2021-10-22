@@ -126,6 +126,7 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
+        multiDexEnabled true
         applicationId "com.appblibio"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
@@ -176,9 +177,12 @@ android {
 
         }
     }
+    
 }
 
 dependencies {
+     implementation 'com.android.support:multidex:2.0.1' //enter the latest version
+
     implementation fileTree(dir: "libs", include: ["*.jar"])
     //noinspection GradleDynamicVersion
     implementation platform('com.google.firebase:firebase-bom:28.4.2')

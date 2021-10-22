@@ -9,39 +9,36 @@
 import React ,{Component, useEffect,useState}from 'react';
 import {Text,View,FlatList,ScrollView} from 'react-native';
 import Conteiner from './src/routes/app.routes'
-import {AppNavigator} from './AppNavigator'
+
 import { NavigationContainer } from '@react-navigation/native';
 
-import Teste from './src/components/ComponenteTest'
 
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import { Button, ThemeProvider } from 'react-native-elements';
 
-import Login from './src/screens/Login'
-import Routes from './src/routes'
-import {AuthProvider} from './src/contexts/auth';
+
+
 
 
 
   
  
 class App extends Component {
+  
   render(){
     
     return(
       <NavigationContainer>
-        <AuthProvider>
+
           <SafeAreaProvider>
-            <Routes/>
+          <Conteiner/> 
           </SafeAreaProvider>
-        </AuthProvider>
       </NavigationContainer>
           )
   }
 }
  
-//<Conteiner/>
+//<Conteiner/>     {this.state.users.map((user,index)=><View key={index}><Text>{user.nome}-{user.idade}</Text> </View>)}
 
 export default App;
 

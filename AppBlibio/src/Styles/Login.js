@@ -38,6 +38,14 @@ export default StyleSheet.create({
             justifyContent:'center',
             borderRadius:100
         },
+        BotaoDisabled:{
+            backgroundColor:'grey',
+            width:wp('30%'),
+            height:hp('6%'),
+            alignItems:'center',
+            justifyContent:'center',
+            borderRadius:100
+        },
         TextBotton:{
             fontSize:20,
             fontFamily:'Rubik Light',

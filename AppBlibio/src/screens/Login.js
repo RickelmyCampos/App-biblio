@@ -1,32 +1,43 @@
-import React, {  useContext, useState } from "react";
-import { View, Text,Image,TextInput,TouchableOpacity} from 'react-native';
+import React, {  useContext, useEffect, useState } from "react";
+import { View, Text,Image,KeyboardAvoidingView,TextInput,TouchableOpacity} from 'react-native';
 import Icon  from "react-native-vector-icons/Ionicons";
+
+
 
 import Estilos from '../Styles/Login'
 import AuthContext from "../contexts/auth";
+import firebase from "@react-native-firebase/auth";
 
 
- function Login (){
+ function Login ({navigation}){
      const [email,setEmail]=useState('');
      const [password,setPassword]=useState('');
-     const [secure, setSecure] = useState(true)
+     const [erro,setErro]=useState(false);
+     const [secure, setSecure] = useState(true);
      
-     const {signed,user,Logar,erro}=useContext(AuthContext);
      
-    
-     function HandleSignIn(){
-        Logar(email,password);
-     }
-     function Erro(){
-         if (erro==true){
-             console.log(erro)
-             return(<Text style={{color:'red',}}> Email ou Senha erradas</Text>)
-         }
-        }
+     const firebaseLogin=()=>{
+         firebase().signInWithEmailAndPassword(email,password).then((userCredential)=>{
+             let user=userCredential.user;
+             navigation.navigate("DrawerHome",{idUser: user.uid})
 
+         }).catch((error)=>{
+             setErro(true)
+             let errorCode=error.code;
+             let errorMessage=error.message;
+         })
+     }
+     useEffect(()=>{
+        firebase().onAuthStateChanged(function(user){
+            if(user){
+                navigation.navigate("DrawerHome",{idUser: user.uid})
+            }
+        })
+     },[])
+    
    
     return(
-
+        
             <View style={Estilos.conteiner}>
                 <View style={Estilos.View}>
                 <TextInput 
@@ -55,14 +66,32 @@ import AuthContext from "../contexts/auth";
                 onPress={() => setSecure(!secure)}/>
                 </View>
 
-                 {Erro()}
-                <TouchableOpacity onPress= {HandleSignIn}> 
-                    <View style={Estilos.Botao}>
-                    <Text style={Estilos.TextBotton}>Logar</Text>
+                 {erro===true?
+                 <View><Text>Email ou senha inválidos</Text></View>
+                 :
+                 <View></View>
+                 }
+                 {
+                     email==='' || password ===''?
+                     <TouchableOpacity disabled={true} > 
+                    <View style={Estilos.BotaoDisabled}>
+                    <Text style={Estilos.TextBotton}>Entrar</Text>
                     </View>
-                </TouchableOpacity>
-               
+                    </TouchableOpacity>
+                     :
+                     <TouchableOpacity  onPress={firebaseLogin}> 
+                    <View style={Estilos.Botao}>
+                    <Text style={Estilos.TextBotton}>Entrar</Text>
+                    </View>
+                    </TouchableOpacity>
+                 }
+                 <Text>
+                     não possui uma conta?
+                     <Text onPress={()=>{navigation.navigate('NewUser')}}> Cadastre-se</Text>
+                 </Text>
+                
             </View>
+           
         );
     }
 export default Login;
