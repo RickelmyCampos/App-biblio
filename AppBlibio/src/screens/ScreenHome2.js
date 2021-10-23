@@ -109,12 +109,12 @@ const List=({item})=>{
 function PageHome ({ navigation,valores}) {
   const [books, setBooks] = useState([])
   function deleteBook(id){
-    firestore().collection(valores).doc(id).delete()
+    firestore().collection(valores.uid).doc(id).delete()
   }
   
     useEffect(() => {
         // sujeitoprogramador.com/ + r-api/?api=filmes
-       firestore().collection(valores).onSnapshot((query)=>{
+       firestore().collection(valores.uid).onSnapshot((query)=>{
          const List=[]
          query.forEach((doc)=>{
            List.push({...doc.data(),id:doc.id})

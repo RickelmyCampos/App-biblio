@@ -19,7 +19,11 @@ import firebase from "@react-native-firebase/auth";
      const firebaseLogin=()=>{
          firebase().signInWithEmailAndPassword(email,password).then((userCredential)=>{
              let user=userCredential.user;
-             navigation.navigate("DrawerHome",{idUser: user.uid})
+             navigation.reset({
+                index:0,
+                routes:[{name:'DrawerHome',
+            params:{idUser: user}}]
+            })
 
          }).catch((error)=>{
              setErro(true)
@@ -30,7 +34,12 @@ import firebase from "@react-native-firebase/auth";
      useEffect(()=>{
         firebase().onAuthStateChanged(function(user){
             if(user){
-                navigation.navigate("DrawerHome",{idUser: user.uid})
+                navigation.reset({
+                    index:0,
+                    routes:[{name:'DrawerHome',
+                params:{idUser: user}}]
+                })
+                
             }
         })
      },[])

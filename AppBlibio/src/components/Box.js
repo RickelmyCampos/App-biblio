@@ -10,11 +10,15 @@ import  firebase  from "@react-native-firebase/auth";
 
 
 function DrawerContent (props) {
-  const id=props.valores
+  const perfil=props.valores
+
   const {navigation}=props;
   function Sair(){
       firebase().signOut().then(()=>{
-        navigation.navigate('Login')
+        navigation.reset({
+          index:0,
+          routes:[{name:'Login'}]
+      })
       }).catch((error)=>{
         
       })
@@ -34,14 +38,14 @@ function DrawerContent (props) {
   
        
        <Text style={{fontSize:18,fontFamily:'Rubik Medium',fontWeight: 'bold',textAlign:'center',color:'#444941'}}>nome</Text>
-       <Text style={{fontSize:15,fontFamily:'Rubik Medium',textAlign:'center',color:'#444941'}}>Ver Perfil</Text>
+       <Text style={{fontSize:15,fontFamily:'Rubik Medium',textAlign:'center',color:'#444941'}}onPress={()=>navigation.navigate('Profile',perfil)}>Ver Perfil</Text>
     </View>
     
   </View>
   <View style={Estilo.Configs}>
    <View style={{marginTop:'10%',marginLeft:'5%'}}>
     <Text style={Estilo.TextConfigs}>Amigos</Text>
-    <TouchableOpacity onPress={()=>navigation.navigate('Cadastro',id)}><Text style={Estilo.TextConfigs}>Cadastrar</Text></TouchableOpacity>
+    <TouchableOpacity onPress={()=>navigation.navigate('Cadastro',perfil.uid)}><Text style={Estilo.TextConfigs}>Cadastrar</Text></TouchableOpacity>
     <TouchableOpacity ><Text style={Estilo.TextConfigs}>Meus Livros</Text></TouchableOpacity>
     <TouchableOpacity ><Text style={Estilo.TextConfigs}>Configurações</Text></TouchableOpacity>
     <TouchableOpacity onPress={Sair} ><Text style={Estilo.TextConfigs}>Sair</Text></TouchableOpacity>

@@ -4,6 +4,7 @@ import PageListBook from '../screens/ListBooks';
 import PageCadastro from '../screens/ScreenCadastro';
 import PageLogin from '../screens/Login';
 import PageNewUser from '../screens/NewUser';
+import Profile from '../screens/Profile';
 import Estilos from '../Styles/HeaderStyles';
 import SearchStyle from '../Styles/StyleSearch';
 import  React,{useState} from 'react';
@@ -28,7 +29,8 @@ const Stack=createNativeStackNavigator();
 function DrawerHome(props) {
     const [visivel,setVisivel]=useState(false)
     const v=props.idUser
-    console.log('this values',v)
+    
+    
    
     return(
         <DrawerHomeNavigation.Navigator drawerContent={(props)=>(<DrawerContent valores={v}{...props}/>)}>
@@ -83,6 +85,7 @@ function Conteiner({route}){
               </Stack.Screen>
             <Stack.Screen name="Book" component={PageBook} options={Estilos.HeaderBook}/>
             <Stack.Screen name="List" component={PageListBook} options={Estilos.HeaderBook}/>
+            <Stack.Screen name="Profile" component={Profile} options={Estilos.HeaderBook}/>
             <Stack.Screen name="Cadastro" component={PageCadastro} options={Estilos.HeaderBook}/>
             </Stack.Navigator>
     </View>

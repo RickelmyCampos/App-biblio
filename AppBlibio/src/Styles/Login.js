@@ -24,10 +24,11 @@ export default StyleSheet.create({
         },
         Inputs:{
             height:45,
+            width:300,
             borderColor:'#7FC8A9',
             color:'#444941',
             marginBottom:10,
-            alignSelf:'stretch'
+            alignSelf:'stretch',
     
         },
         Botao:{
